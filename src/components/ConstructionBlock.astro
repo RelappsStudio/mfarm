@@ -1,0 +1,41 @@
+---
+import 'animate.css';
+import { Construction } from '@lucide/astro';
+---
+
+<div class="construction">
+    
+  <h1 class="construction-header animate__hinge">
+    <Construction/>
+    Under construction
+    <Construction/>
+  </h1>
+
+  <video autoplay loop muted playsinline width="150">
+    <source src="/animations/maintenance.webm" type="video/webm" />
+  </video>
+</div>
+
+<style>
+
+
+  .construction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
+    justify-content: center;  
+    gap: 5rem;                
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .construction-header {
+    animation-duration: 5s;
+  }
+
+.fade-back {
+  animation: fadeBack 1.5s ease forwards;
+}
+
+</style>
+
