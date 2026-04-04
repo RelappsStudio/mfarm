@@ -1,5 +1,6 @@
 ---
 import 'animate.css';
+import maintenanceVideo from '../assets/maintenance.webm';
 import { Construction } from '@lucide/astro';
 ---
 
@@ -12,7 +13,7 @@ import { Construction } from '@lucide/astro';
   </h1>
 
   <video autoplay loop muted playsinline width="150">
-    <source src="../../public/animations/maintenance.webm" type="video/webm" />
+    <source src={maintenanceVideo} type="video/webm" />
   </video>
 </div>
 
