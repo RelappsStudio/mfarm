@@ -1,0 +1,135 @@
+---
+interface Props {
+  leftColor?: string;
+  rightColor?: string;
+  leftHref?: string;
+  rightHref?: string;
+  splitPercentage?: number;
+}
+
+const { 
+  leftColor = "#3b82f6", 
+  rightColor = "#1e293b",
+  leftHref = "/blog",
+  rightHref = "/portfolio",
+  splitPercentage = 50 
+} = Astro.props;
+---
+
+<div class="container">
+  <a href={leftHref} class="side left">
+    <div class="content">
+      <slot name="left" />
+    </div>
+  </a>
+  
+  <a href={rightHref} class="side right">
+    <div class="content">
+      <slot name="right" />
+    </div>
+  </a>
+</div>
+
+<!-- TODO: Fix this mess eventually  -->
+
+<style define:vars={{ leftColor, rightColor, splitPercentage: `${splitPercentage}%` }}>
+  
+
+  :global(main) {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+
+  :global(main > .container) {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    display: flex !important;
+  }
+
+  
+ .container {
+    position: relative;
+    width: 100%;
+    flex: 1; 
+    min-height: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .side {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center; 
+    text-decoration: none;
+    outline: none;
+  }
+
+
+  .left {
+    justify-content: flex-start; 
+    padding-left: 1rem;
+    background-color: var(--leftColor);
+    clip-path: polygon(0 0, calc(var(--splitPercentage) - 10%) 0, var(--splitPercentage) 100%, 0 100%);
+    z-index: 1;
+  }
+
+  
+.right {
+    justify-content: flex-end;
+    background-color: var(--rightColor);
+    clip-path: polygon(calc(var(--splitPercentage) - 10%) 0, 100% 0, 100% 100%, var(--splitPercentage) 100%);
+    z-index: 0;
+  }
+
+  .left .content {
+    margin-left: 10rem; /* Adjust this value to push further from left */
+    text-align: left;
+  }
+
+  .right .content {
+    margin-right: 10rem; /* Adjust this value to push further from right */
+    text-align: right;
+  }
+
+  .content {
+    color: white;
+    font-family: sans-serif;
+    font-size: 2rem; 
+    font-weight: 900;
+    pointer-events: none;
+    text-transform: uppercase;
+  }
+
+  .container:has(.left:hover) .left {
+    clip-path: polygon(0 0, calc(var(--splitPercentage) + 5%) 0, calc(var(--splitPercentage) + 15%) 100%, 0 100%);
+    z-index: 2;
+  }
+  .container:has(.left:hover) .right {
+    clip-path: polygon(calc(var(--splitPercentage) + 5%) 0, 100% 0, 100% 100%, calc(var(--splitPercentage) + 15%) 100%);
+  }
+
+  .container:has(.right:hover) .left {
+    clip-path: polygon(0 0, calc(var(--splitPercentage) - 25%) 0, calc(var(--splitPercentage) - 15%) 100%, 0 100%);
+  }
+  .container:has(.right:hover) .right {
+    clip-path: polygon(calc(var(--splitPercentage) - 25%) 0, 100% 0, 100% 100%, calc(var(--splitPercentage) - 15%) 100%);
+    z-index: 2;
+  }
+  
+  .side:active {
+    filter: brightness(0.8);
+  }
+</style>

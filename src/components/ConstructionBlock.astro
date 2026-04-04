@@ -1,79 +1,92 @@
 ---
-import 'animate.css';
+import "animate.css";
 // import maintenanceVideo from '/animations/maintenance.webm';
-import { Construction } from '@lucide/astro';
+import { Construction } from "@lucide/astro";
 ---
 
 <div class="construction">
+    <h1 class="construction-header animate__animated animate__hinge">
+        <Construction />
+        Under construction
+        <Construction />
+    </h1>
 
-<h1 class="construction-header-subtitle animate__backInDown">
-<Construction/>
-    Under construction
-    <Construction/>
-</h1>
-  <h1 class="construction-header animate__animated  animate__hinge">
-    <Construction/>
-    Under construction
-    <Construction/>
-  </h1>
-  <!-- Neocities free tier does not allow to upload and use .webm files-->
-  <!-- Leaving this for reference and actually using slideshow to create animation manually -->
-  <!-- <video autoplay loop muted playsinline width="150">
+    <h1 class="construction-header-subtitle animate__backInDown">
+        <Construction />
+        Under construction
+        <Construction />
+    </h1>
+
+    <!-- Neocities free tier does not allow to upload and use .webm files-->
+    <!-- Leaving this for reference and actually using slideshow to create animation manually -->
+    <!-- <video autoplay loop muted playsinline width="150">
     <source src={maintenanceVideo} type="video/webm" />
   </video> -->
 
-<div class="slideshow"></div>
+    <div class="slideshow"></div>
 
-<h1 class="construction-header-subtitle animate__backInUp">
-Cool stuff incoming
-</h1>
-
+    <h1 class="construction-header-subtitle animate__backInUp">
+        Cool stuff incoming
+    </h1>
 </div>
 
 <style>
-.slideshow {
-  width: 400px;
-  height: 250px;
-  background-size: cover;
-  background-position: center;
+    .slideshow {
+        width: 400px;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
 
-  animation: snapFrames 600MS steps(7) infinite;
-}
+        animation: snapFrames 600ms steps(7) infinite;
+    }
 
-@keyframes snapFrames {
-  0%   { background-image: url('/images/image-0.png'); }
-  14%  { background-image: url('/images/image-1.png'); }
-  28%  { background-image: url('/images/image-2.png'); }
-  42%  { background-image: url('/images/image-3.png'); }
-  56%  { background-image: url('/images/image-4.png'); }
-  70%  { background-image: url('/images/image-5.png'); }
-  100% { background-image: url('/images/image-0.png'); } 
-}
+    @keyframes snapFrames {
+        0% {
+            background-image: url("/images/image-0.png");
+        }
+        14% {
+            background-image: url("/images/image-1.png");
+        }
+        28% {
+            background-image: url("/images/image-2.png");
+        }
+        42% {
+            background-image: url("/images/image-3.png");
+        }
+        56% {
+            background-image: url("/images/image-4.png");
+        }
+        70% {
+            background-image: url("/images/image-5.png");
+        }
+        100% {
+            background-image: url("/images/image-0.png");
+        }
+    }
 
-  .construction {
-    display: flex;
-    flex-direction: column;
-    align-items: center;      
-    justify-content: center;  
-    gap: 3rem;                
-    text-align: center;
-    padding: 2rem 0;
-  }
+    .construction {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        text-align: center;
+        padding: 0rem 0;
+    }
 
-  .construction-header {
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-  }
-  .construction-header-subtitle {
-    opacity: 0;
-    animation-fill-mode: forwards;
-    animation-delay: 4s;
-    animation-duration: 2s;
-  }
+    .construction-header {
+        animation-delay: 1s;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+    }
+    .construction-header-subtitle {
+        opacity: 0;
+        animation-fill-mode: forwards;
+        animation-delay: 5s;
+        animation-duration: 2s;
+    }
 
-.fade-back {
-  animation: fadeBack 1.5s ease forwards;
-}
-
+    .fade-back {
+        animation: fadeBack 1.5s ease forwards;
+    }
 </style>
-

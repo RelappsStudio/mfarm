@@ -1,6 +1,8 @@
 html, body {
   height: 100%;
   margin: 0;
+  /* background-color: #023047;
+  color: #8ECAE6; */
 }
 
 /* Page layout */
@@ -21,13 +23,13 @@ html, body {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0rem;
 }
 
 /* Main grows to push footer down */
 main {
   flex: 1;
-  padding: 2rem 0;
+  padding: 0rem 0;
 }
 
 /* Footer */

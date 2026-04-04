@@ -1,16 +1,26 @@
 ---
 
 import ConstructionBlock from '../components/ConstructionBlock.astro';
+import SplitBlock from '../components/SplitBlock.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Construction } from '@lucide/astro';
 ---
 
-<BaseLayout title="Home">
+<BaseLayout>
 
-	<ConstructionBlock/>
+	<SplitBlock leftColor="#219EBC" rightColor="#FB8500">
+<div slot="left">
+    <h2>Blog</h2>
+  </div>
+  <div slot="right">
+    <h2>Portfolio</h2>
+  </div>
+</SplitBlock>
+
+	<!-- <ConstructionBlock/>
 	 <i class="fi fi-rr-user"></i>
     <i class="fi fi-rr-broom"></i>
 	<i class="fi fi-rr-barrier-caution"></i>
 
-	<Construction/>
+	<Construction/> -->
 </BaseLayout>
