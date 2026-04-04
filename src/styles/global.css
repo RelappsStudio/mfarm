@@ -1,0 +1,78 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Page layout */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  padding: 1rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Centered content container */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Main grows to push footer down */
+main {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #ddd;
+  padding: 1rem 0;
+}
+
+.site-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+}
+
+/* Top row layout */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap; /* allows stacking on small screens */
+  margin-bottom: 2rem;
+}
+
+/* Columns */
+.footer-col {
+  min-width: 150px;
+}
+
+.footer-col h4 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  margin-bottom: 0.25rem;
+}
+
+/* Bottom row */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}

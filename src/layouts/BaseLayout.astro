@@ -1,0 +1,43 @@
+---
+import Footer from "../components/Footer.astro";
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/uicons/rounded.css">
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="page">
+      
+      <!-- MARK: Header -->
+      <header class="site-header">
+        <div class="container">
+          <h2>MFARM</h2>
+          <p>Meditations for a restless mind</p>
+        </div>
+      </header>
+
+      <!-- MARK:  Main content -->
+      <main class="container">
+        <h1>{title}</h1>
+        <slot />
+      </main>
+
+      <!-- MARK:  Footer -->
+      <Footer />
+
+    </div>
+
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
+</html>

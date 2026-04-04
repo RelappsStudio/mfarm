@@ -1,0 +1,39 @@
+name: Build and Deploy to Neocities
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Install Ruby
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby-full
+
+      - name: Install Neocities CLI
+        run: sudo gem install neocities
+
+      - name: Deploy to Neocities
+        env:
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
+        run: |
+          neocities push dist
