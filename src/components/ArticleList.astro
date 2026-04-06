@@ -1,0 +1,135 @@
+---
+interface Props {
+  posts: any[];
+}
+
+const { posts } = Astro.props;
+
+// Use sortedPosts instead of posts for the map!
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+);
+---
+<div class="list-container">
+  <div class="article-stack">
+    {sortedPosts.map((post) => (
+      <a href={post.url} class="article-card">
+        <div class="meta">
+          <span class="date">
+            {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </span>
+        </div>
+        <div class="content">
+          <h3 class="title">{post.frontmatter.title}</h3>
+          <p class="description">{post.frontmatter.description}</p>
+          <div class="tags">
+            {post.frontmatter.tags?.map((tag: string) => (
+              <span class="tag">#{tag}</span>
+            ))}
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+
+.article-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.article-card:hover .title {
+  color: #3b82f6; /* Pops the title color on hover */
+}
+
+.article-card:hover .arrow {
+  opacity: 1;
+  transform: translateX(5px);
+}
+  .list-container {
+    container-type: inline-size;
+    width: 100%;
+    display: flex;
+  }
+
+  .article-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+
+  }
+
+  .article-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    align-items: flex-start; /* Default for safety */
+  }
+
+  .title {
+    margin: 0;
+    font-weight: 700;
+    color: #000000;
+    font-size: 1.2rem; /* Fallback size */
+    display: block;    /* Ensure it's visible */
+  }
+
+  .meta { font-family: monospace; color: #888; font-size: 0.85rem; }
+  .content { flex: 1; min-width: 0; }
+  .description { margin: 0.5rem 0 1rem 0; font-size: 1rem; color: #ccc; }
+  .tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .tag { font-size: 0.8rem; color: #3b82f6; font-weight: 600; }
+  .arrow { font-size: 1.5rem; color: #444; }
+
+  /* 2. SIDEBAR MODE (Small container) */
+  @container (max-width: 450px) {
+    .article-card {
+      flex-direction: column;
+      gap: 0.5rem;
+      
+    }
+    .description, .tags, .arrow {
+      display: none; 
+    }
+    .title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @container (min-width: 451px) {
+    .article-card {
+      gap: 2rem;
+      flex-direction: row;
+      align-items: center;
+      padding-right: 5rem;
+      padding-left: 5rem;
+    }
+    .meta {
+      min-width: 100px;
+    }
+    .title {
+      font-size: 1.6rem;
+    }
+  }
+
+  .article-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+</style>

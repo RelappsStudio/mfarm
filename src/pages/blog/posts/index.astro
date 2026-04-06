@@ -1,0 +1,15 @@
+---
+import Blogpost from "../../../components/Blogpost.astro"
+import ConstructionBlock from "../../../components/ConstructionBlock.astro"
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+
+const allPosts = Object.values(import.meta.glob('./*.md', {eager: true}))
+---
+
+<BaseLayout>
+    <ul>
+      {allPosts.map((post: any,) => <Blogpost url={post.url} title={post.frontmatter.title}/>) }
+    </ul>
+
+    <ConstructionBlock/>
+</BaseLayout>

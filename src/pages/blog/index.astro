@@ -1,10 +1,12 @@
 ---
-import ConstructionBlock from "../../components/ConstructionBlock.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleList from "../../components/ArticleList.astro"
+import Blogpost from "../../components/Blogpost.astro"
+import ConstructionBlock from "../../components/ConstructionBlock.astro"
+import BaseLayout from "../../layouts/BaseLayout.astro"
 
-
+const allPosts = Object.values(import.meta.glob('./posts/*.md', {eager: true}))
 ---
 
 <BaseLayout>
-    <ConstructionBlock/>
+    <ArticleList posts={allPosts}></ArticleList>
 </BaseLayout>

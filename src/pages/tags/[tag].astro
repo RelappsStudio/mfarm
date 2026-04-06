@@ -1,0 +1,44 @@
+---
+import Blogpost from '../../components/Blogpost.astro';
+import ConstructionBlock from '../../components/ConstructionBlock.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  
+  const allPosts = Object.values(import.meta.glob('/src/pages/blog/posts/*.md', { eager: true }));
+
+  
+  const uniqueTags = [...new Set(
+    allPosts
+      .map((post: any) => post.frontmatter.tags)
+      .filter(tags => Array.isArray(tags)) 
+      .flat()
+      .map(tag => tag.trim().toLowerCase()) 
+  )];
+
+
+//   console.log("routes found:", uniqueTags);
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post: any) => {
+       const postTags = post.frontmatter.tags || [];
+       return postTags.map((t: string) => t.toLowerCase().trim()).includes(tag);
+    });
+    
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+<BaseLayout >
+  <p>Posts tagged with {tag}:</p>
+  <ul>
+    {posts.map((post: any) => <Blogpost url={post.url} title={post.frontmatter.title}/>)}
+  </ul>
+  <ConstructionBlock/>
+</BaseLayout>

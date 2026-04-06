@@ -24,10 +24,12 @@ const { title } = Astro.props;
       
       <!-- MARK: Header -->
       <header class="site-header">
+        <a href="/" class="header-link">
         <div class="container">
           <h2>MFARM</h2>
           <p>Meditations for a restless mind</p>
         </div>
+        </a>
       </header>
 
       <!-- MARK:  Main content -->
@@ -47,3 +49,10 @@ const { title } = Astro.props;
     </script>
   </body>
 </html>
+
+<style>
+  .header-link {
+    text-decoration: none;
+    color: inherit
+  }
+</style>
