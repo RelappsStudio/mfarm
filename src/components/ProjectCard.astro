@@ -1,0 +1,121 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  link: string;
+  techStack: string[];
+}
+
+const { title, description, imageSrc, imageAlt, link, techStack } = Astro.props;
+---
+
+<a href={link} class="project-card">
+  <div class="card-content">
+    <div class="image-container">
+      <img src={imageSrc} alt={imageAlt} class="project-image" loading="lazy" />
+    </div>
+    
+    <div class="text-container">
+      <h3 class="project-title">{title}</h3>
+      <p class="project-description">{description}</p>
+      
+      <div class="tech-stack">
+        {techStack.map((tech) => (
+          <span class="tech-badge">{tech}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    perspective: 1000px; /* For potential 3D effects */
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.3s ease;
+    box: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* The Hover Effect */
+  .project-card:hover .card-content {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6; /* Highlight border on hover */
+  }
+
+  .image-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    /* background-color: #f3f4f6;  */
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.1);
+  }
+
+  .text-container {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .project-description {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-radius: 1.5;
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tech-badge {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+  }
+
+  .project-card:hover .tech-badge {
+    background-color: #eff6ff;
+    color: #2563eb;
+  }
+</style>

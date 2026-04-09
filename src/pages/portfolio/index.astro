@@ -1,10 +1,67 @@
 ---
 import ConstructionBlock from "../../components/ConstructionBlock.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const commercialProjects = Object.values(import.meta.glob('./commercial/*.md', {eager: true}))
+const personalProjects = Object.values(import.meta.glob('./personal/*.md', {eager: true}))
+const otherProjects = Object.values(import.meta.glob('./other/*.md', {eager: true}))
 
 ---
 
 <BaseLayout>
     <ConstructionBlock/>
+     
+        <div class="grid-container">
+        <h1>Commercial projects</h1>
+        {commercialProjects.map((project: any) =>
+        <ProjectCard 
+        title={project.frontmatter.title}
+        description={project.frontmatter.description}
+        imageSrc={project.frontmatter.image.url}
+        imageAlt={project.frontmatter.image.alt}
+        techStack={project.frontmatter.stack}
+        link={project.url}
+    />
+    )}
+    
+    </div>
+        <div class="grid-container">
+        <h1>Personal projects</h1>
+        {personalProjects.map((project: any) =>
+        <ProjectCard 
+        title={project.frontmatter.title}
+        description={project.frontmatter.description}
+        imageSrc={project.frontmatter.image.url}
+        imageAlt={project.frontmatter.image.alt}
+        techStack={project.frontmatter.stack}
+        link={project.url}
+    />
+    )}
+    
+    </div>
+    </div>
+        <div class="grid-container">
+        <h1>Packages / libraries</h1>
+        {otherProjects.map((project: any) =>
+        <ProjectCard 
+        title={project.frontmatter.title}
+        description={project.frontmatter.description}
+        imageSrc={project.frontmatter.image.url}
+        imageAlt={project.frontmatter.image.alt}
+        techStack={project.frontmatter.stack}
+        link={project.url}
+    />
+    )}
+    
+    </div>
 </BaseLayout>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+</style>
