@@ -2,7 +2,7 @@
 layout: ../../../layouts/ProjectDetailsLayout.astro
 title: 'Home Credit India'
 devYear: '2020'
-description: 'Everything you need for precise and efficient printing work - Printing inks consumption calculator, winding, distortion and much more.'
+description: 'Apply for a personal loan instantly. Discover exclusive offers. Repay your EMIs easily. Access your loan details on-the-go.'
 employer: 'EmbedIT'
 employerUrl: 'https://www.embedit.com/'
 client: 'Home Credit India'

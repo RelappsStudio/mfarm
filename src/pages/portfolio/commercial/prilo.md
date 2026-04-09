@@ -2,7 +2,7 @@
 layout: ../../../layouts/ProjectDetailsLayout.astro
 title: 'Prilo'
 devYear: '2020'
-description: 'Everything you need for precise and efficient printing work - Printing inks consumption calculator, winding, distortion and much more.'
+description: 'With drivers in mind, we have created a dedicated app that allows them to constantly report on load status and monitor journeys. Prilo also allows for electronic document uploads.'
 employer: 'YarMobile'
 employerUrl: ''
 client: ''

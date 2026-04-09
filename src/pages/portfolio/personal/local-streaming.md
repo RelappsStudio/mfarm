@@ -13,5 +13,5 @@ image:
     url: '/projects/local-streaming/local-streaming-placeholder-landing.png'
     alt: 'Android app integrity logo'
 gallery: []
-stack: ["Flutter", "Android", "iOS"]
+stack: ["Kotlin", "Android", "Spring Boot", "Android TV"]
 ---
