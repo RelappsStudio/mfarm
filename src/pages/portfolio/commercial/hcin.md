@@ -1,7 +1,7 @@
 ---
 layout: ../../../layouts/ProjectDetailsLayout.astro
-title: 'Home Credit India'
-devYear: '2020'
+title: 'Home Credit India (unpublished)'
+devYear: '2023-2025'
 description: 'Apply for a personal loan instantly. Discover exclusive offers. Repay your EMIs easily. Access your loan details on-the-go.'
 employer: 'EmbedIT'
 employerUrl: 'https://www.embedit.com/'
