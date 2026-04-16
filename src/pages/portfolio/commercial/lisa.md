@@ -10,7 +10,7 @@ clientUrl: ''
 playstoreURL: ''
 appstoreURL: ''
 image:
-    url: '/projects/lisa/lisa-placeholder-landing.png'
+    url: '/projects/lisa/lisa-landing.jpg'
     alt: 'Android app integrity logo'
 gallery: []
 stack: ["Flutter", "Linux", "gRPC"]

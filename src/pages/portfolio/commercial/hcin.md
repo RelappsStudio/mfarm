@@ -10,8 +10,8 @@ clientUrl: 'https://www.homecredit.co.in/en'
 playstoreURL: ''
 appstoreURL: ''
 image:
-    url: 'projects\home-credit-in\hcin-landing.png'
+    url: '/projects/home-credit-in/hcin-landing.png'
     alt: 'Android app integrity logo'
-gallery: ['projects\home-credit-in\01.png', 'projects\home-credit-in\02.png', 'projects\home-credit-in\03.png', 'projects\home-credit-in\04.png', 'projects\home-credit-in\05.png', 'projects\home-credit-in\06.png']
+gallery: ['/projects/home-credit-in/01.jpg', '/projects/home-credit-in/02.jpg', '/projects/home-credit-in/03.jpg', '/projects/home-credit-in/04.jpg', '/projects/home-credit-in/05.jpg', '/projects/home-credit-in/06.jpg']
 stack: ["Flutter", "Android"]
 ---

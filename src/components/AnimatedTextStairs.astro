@@ -1,0 +1,84 @@
+---
+interface Props {
+  lines?: string[];
+}
+
+const { lines = [] } = Astro.props;
+const baseLines = lines.length ? lines : ["404", "Not found"];
+const renderedLines = ["", ...baseLines, ""];
+const displayLines = renderedLines.slice(0, -1).map((line, index) => ({
+  top: line,
+  bottom: renderedLines[index + 1],
+}));
+---
+
+<div class="Wrapper">
+  <ul class="Words">
+    {displayLines.map((item, index) => (
+      <li class="Words-line" style={`--index: ${index + 1}`}>
+        <p>{item.top}</p>
+        <p>{item.bottom}</p>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+.Wrapper {
+  min-height: 10vh;
+  display: grid;
+  place-items: center;
+  padding: 50px 0;
+}
+
+.Words {
+  display: inline-grid;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 68px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  //color: #fff;
+  transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-kerning: normal;
+  -webkit-text-size-adjust: 100%;
+  list-style: none;
+}
+
+.Words-line {
+  --left-offset: 29px;
+  --clip-height: 50px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  left: calc(var(--left-offset) * var(--index));
+}
+
+.Words-line:nth-child(odd) {
+  transform: skew(60deg, -30deg) scaleY(0.66667);
+}
+
+.Words-line:nth-child(even) {
+  transform: skew(0deg, -30deg) scaleY(1.33333);
+}
+
+.Words-line p {
+  height: 50px;
+  line-height: 45px;
+  margin: 0;
+  padding: 0 10px;
+  transition: transform 0.4s ease-in-out;
+  transform: translate3d(0, 0, 0);
+  vertical-align: top;
+  white-space: nowrap;
+  color: inherit;
+  background: transparent;
+}
+
+.Words:hover p {
+  transform: translate3d(0, -50px, 0);
+}
+</style>

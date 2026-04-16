@@ -12,6 +12,6 @@ appstoreURL: 'https://apps.apple.com/vn/app/home-credit-t%C3%A0i-ch%C3%ADnh-onli
 image:
     url: '/projects/home-credit-vn/hcvn-landing.png'
     alt: 'Android app integrity logo'
-gallery: []
+gallery: ["/projects/home-credit-vn/01.png", "/projects/home-credit-vn/02.png", "/projects/home-credit-vn/03.png", "/projects/home-credit-vn/04.png", "/projects/home-credit-vn/05.png", "/projects/home-credit-vn/06.png","/projects/home-credit-vn/07.png", "/projects/home-credit-vn/08.png",]
 stack: ["Flutter", "Android", "iOS"]
 ---

@@ -3,7 +3,7 @@ layout: ../../../layouts/ProjectDetailsLayout.astro
 title: 'cool_devtool'
 devYear: '2023'
 description: 'Flutter profiling, debugging & performance tools. All grouped up, ready to use without running app through IDE.'
-employer: 'YarMobile'
+employer: 'RelappsStudio'
 employerUrl: ''
 client: ''
 clientUrl: ''

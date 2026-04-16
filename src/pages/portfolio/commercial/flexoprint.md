@@ -12,6 +12,6 @@ appstoreURL: ''
 image:
     url: '/projects/flexoprint/flexoprint-landing.png'
     alt: 'Android app integrity logo'
-gallery: []
+gallery: ["/projects/flexoprint/01.png", "/projects/flexoprint/02.png", "/projects/flexoprint/03.png", "/projects/flexoprint/04.png", "/projects/flexoprint/05.png", "/projects/flexoprint/06.png","/projects/flexoprint/07.png", "/projects/flexoprint/08.png",]
 stack: ["Flutter", "Android", "iOS"]
 ---

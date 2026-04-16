@@ -1,11 +1,155 @@
 ---
 import ConstructionBlock from "../components/ConstructionBlock.astro";
 import BaseLayout from "./BaseLayout.astro";
+import CircularGallery from "../components/CircularGallery.astro";
 
+const { frontmatter } = Astro.props;
 
+const {
+  title,
+  description,
+  devYear,
+  employer,
+  employerUrl,
+  client,
+  clientUrl,
+  image,
+  gallery,
+  stack,
+} = frontmatter;
 ---
 
 <BaseLayout>
-    <ConstructionBlock/>
+  <article class="project-details">
+    <!-- Project Header Information -->
+    <header class="project-header">
+      <div class="project-info">
+        <h1 class="project-title">{title}</h1>
+        <p class="project-description">{description}</p>
+        
+        <div class="project-meta">
+          {devYear && <p><strong>Year:</strong> {devYear}</p>}
+          {employer && (
+            <p>
+              <strong>Employer:</strong> 
+              <a href={employerUrl} target="_blank" rel="noopener noreferrer">{employer}</a>
+            </p>
+          )}
+          {client && (
+            <p>
+              <strong>Client:</strong> 
+              <a href={clientUrl} target="_blank" rel="noopener noreferrer">{client}</a>
+            </p>
+          )}
+          {stack && stack.length > 0 && (
+            <div class="project-stack">
+              {stack.map((tech: string) => (
+                <span class="tech-badge">{tech}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
 
+      {image && (
+        <div class="project-hero-image">
+          <img src={`${image.url}`} alt={image.alt} loading="eager" />
+        </div>
+      )}
+    </header>
+
+    <!-- Image Gallery/Carousel Section -->
+    <section class="project-gallery">
+      {gallery && gallery.length > 0 ? (
+        <div class="gallery-container">
+          <CircularGallery images={gallery} />
+        </div>
+      ) : (
+        <ConstructionBlock />
+      )}
+      {}
+    </section>
+
+    <!-- Markdown Content Slot -->
+    <section class="project-content">
+      <slot />
+    </section>
+  </article>
 </BaseLayout>
+
+<style>
+  .project-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .project-header {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .project-description {
+    font-size: 1.2rem;
+    color: #666;
+            margin-bottom: 1.5rem;
+  }
+
+  .project-meta p {
+    margin: 0.5rem 0;
+  }
+
+  .project-meta a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .project-stack {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .tech-badge {
+    background: #eee;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .project-hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .project-gallery {
+    margin-bottom: 3rem;
+  }
+
+  .project-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+  :global(.project-content p) {
+    margin-bottom: 1.5rem;
+  }
+</style>
