@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # agents instructions
 .continue/
+
+# rough blogpost drafts
+drafts/

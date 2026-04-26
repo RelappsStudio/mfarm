@@ -1,0 +1,169 @@
+
+<div class="form-container">
+  <form id="contact-form">
+    <h2 class="form-title">Want to work together?</h2>
+    
+    <div class="field-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your Name" />
+    </div>
+
+    <div class="field-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Your Email" />
+    </div>
+
+    <div class="field-group">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required placeholder="Topic" />
+    </div>
+
+    <div class="field-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Your Message"></textarea>
+    </div>
+
+    <button type="submit" id="submit-btn">Send Message</button>
+    <p id="status"></p>
+  </form>
+</div>
+
+<style>
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-family: system-ui, sans-serif;
+  }
+
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .form-title {
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+    color: #333;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  button {
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6:px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* THE ANIMATION: A pulse effect when the form is "submitting" */
+  .is-submitting {
+    animation: pulse 1.5s infinite;
+    background-color: #6c757d !important;
+    pointer-events: none;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+  }
+
+  #status {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+</style>
+
+
+<script>
+  import { actions } from 'astro:actions';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('status');
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (!status || !btn) return;
+
+    const formData = new FormData(form);
+
+    btn.classList.add('is-submitting');
+    btn.textContent = "Sending...";
+    status.textContent = "";
+    status.style.color = "inherit";
+    
+    // 1. Provide immediate UI feedback
+    status.textContent = "Sending...";
+    status.style.color = "inherit";
+
+    try {
+      // 2. Pass the FormData object directly
+      const { data, error } = await actions.sendEmail.send(formData);
+
+      if (!error) {
+        status.textContent = "Message sent successfully!";
+        status.style.color = "green";
+        form.reset();
+      } else {
+        // 3. Handle ActionError messages specifically
+        status.textContent = `Error: ${error.message}`;
+        status.style.color = "red";
+      }
+    } catch (err) {
+      // 4. Catch unexpected runtime errors
+      status.textContent = "An unexpected error occurred.";
+      status.style.color = "red";
+      console.error(err);
+    }
+    btn.classList.remove('is-submitting')
+  });
+</script>
